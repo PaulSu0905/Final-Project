@@ -1,90 +1,42 @@
-import java.util.Arrays;
 import javax.swing.JOptionPane;
-
-//•ÿ´e∂i´◊¨O°Aºgßπ´ÿ•ﬂadmin±b∏π°A∑Q∏’¨›¨›µn§J°A¶˝•¢±—§F°A∫√¶¸§£Ø‡•Œindex=Arrays.binarySearch()•h¨d±b∏π¨Oß_¶s¶b
-
-//private or protected or default? ≤{¶bUser™∫adlist¨Odefault
-//¶≥®S¶≥øÏ™kß‚§@®«™F¶Ë≤æ®ÏßO™∫class•h°A¶AßQ•Œ©I•smethod™∫§Ë¶°®”¬≤§∆≥o∞¶class™∫µ{¶°
-
 public class Test 
 {
 	public static void main(String[] args) 
 	{
 		boolean home=false;
-		
-		String startOption[]={"´ÿ•ﬂ±b∏π","µn§J","∞h•X"};
-		String iOption[]= {"∫ﬁ≤z≠˚","∑|≠˚"};
-		String mOption[]= {"æ«•Õ","¶—Æv","¬æ≠˚"};
-		
-		do //∑Ìhome==true°A¶^®Ï•Dµe≠±
+		String startOption[]={"Êõ∏Á±çÊü•Ë©¢","Âª∫Á´ãÂ∏≥Ëôü","ÁôªÂÖ•","ÈÄÄÂá∫"};
+		do //Áï∂home==trueÔºåÂõûÂà∞‰∏ªÁï´Èù¢
 		{
-			int res1=JOptionPane.showOptionDialog(null,"≈w™Ô∂i§J®t≤Œ","≈w™Ô",0,3,null,startOption,null);
-			
-			if(res1==2)//®˙Æ¯
+			User u=new User();
+			int res1=JOptionPane.showOptionDialog(null,"Ê≠°ËøéÈÄ≤ÂÖ•Á≥ªÁµ±","Ê≠°Ëøé",0,3,null,startOption,null);
+			if(res1==3)//ÂèñÊ∂à
 			{
-				JOptionPane.showMessageDialog(null,"¡¬¡¬®œ•Œ");
+				JOptionPane.showMessageDialog(null,"Ë¨ùË¨ù‰ΩøÁî®");
 				home=false;
 			}	
-			else if(res1==0)//´ÿ•ﬂ±b∏π
+
+			else if(res1==1)//Âª∫Á´ãÂ∏≥Ëôü
 			{
-				int res2=JOptionPane.showOptionDialog(null,"∑Q´ÿ•ﬂ¶Û∫ÿ±b∏π?","≈w™Ô",0,3,null,iOption,null);
-				
-				User u;
-				String acctNo;
-				String password;
-				String username;
-				
-				if(res2==0)//´ÿ•ﬂ∫ﬁ≤z≠˚
-				{
-					acctNo=JOptionPane.showInputDialog("±˝´ÿ•ﬂ±b∏π?");
-					password=JOptionPane.showInputDialog("±˝≥]©w±KΩX?");
-					username=JOptionPane.showInputDialog("±˝®œ•Œ¶W∫Ÿ?");
-					//´›∑sºW:¶p™G¶≥´ˆcancel or •ºøÈ§J≠n≈„•‹´ÿ•ﬂ•¢±—
-					u=new User(new Admin(acctNo,password,username),"∫ﬁ≤z≠˚");
-					JOptionPane.showMessageDialog(null, "´ÿ•ﬂ¶®•\");
-					home=true;//∫ﬁ≤z≠˚´ÿ•ﬂµ≤ßÙ
-				}
-				else if(res2==1)//´ÿ•ﬂ∑|≠˚
-				{
-					int res3=JOptionPane.showOptionDialog(null,"¶Û∫ÿ®≠§¿?","≈w™Ô",0,3,null,mOption,null);
-					if(res3==0)
-					{
-						//´›∑sºW:§T∫ÿ∏‘≤”™∫®≠§¿
-					}
-				}
-					
+				u.adduser();
+				home=true;
 			}
-			else if(res1==1)//µn§J
+
+			else if(res1==2)//ÁôªÂÖ•
 			{
-				String acctRes;
-				String passRes;
-				User uTry=new User();//uTry¨Oß⁄Æ≥®”∏’∏’¨›Ø‡§£Ø‡≥ÊØ¬©I•sUser∏Ã™∫§Ë™k°A©“•HUser¶≥∞¶™≈™∫´ÿ∫c§l
-				int iRes=JOptionPane.showOptionDialog(null,"∑Q•H¶Û∫ÿ®≠§¿µn§J?","≈w™Ô",0,3,null,iOption,null);
-				
-				if(iRes==0)//∫ﬁ≤z≠˚µn§J
-				{
-					acctRes=JOptionPane.showInputDialog("Ω–øÈ§J±b∏π:");
-					Arrays.sort(uTry.getAdlist());
-					if(Arrays.binarySearch(uTry.getAdlist(), acctRes)>=0)//ΩTª{±b∏π¨Oß_¶s¶b
-					{
-						int index=Arrays.binarySearch(uTry.getAdlist(),acctRes);
-						passRes=JOptionPane.showInputDialog("Ω–øÈ§J±KΩX:");
-						if(passRes==uTry.getPassword(uTry.adlist[index]))
-						{
-							JOptionPane.showMessageDialog(null,"µn§J¶®•\");
-							//´›∑sºW:∂i§@®B∞›∑Q∞µ™∫∞ ß@ e.g.∑sºWÆ—•ª
-						}
-					}
-					else
-						JOptionPane.showMessageDialog(null,"±b∏πø˘ª~!!");
-						//´›∑sºW:¶^®Ïµn§Jµe≠±
-				}
-				//´›∑sºW:®‰•L®≠§¿™∫µn§J
+				u.login();
+                home=true;
 			}
-		}while(home==true);
+
+            else if(res1==0)//Êü•Ë©¢Êõ∏Á±ç
+            {
+				u.search();
+                home=true;
+            }
+        }while(home==true);
 	}//end main
 
 }//end class
+
 
 
 
